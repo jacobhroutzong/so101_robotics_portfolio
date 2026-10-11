@@ -1,0 +1,29 @@
+<mujoco model="so101_arm">
+  <compiler angle="radian" autolimits="true"/>
+  <option gravity="0 0 -9.81"/>
+
+  <default>
+    <joint damping="0.5"/>
+    <geom friction="0.8 0.1 0.1"/>
+  </default>
+  
+  <worldbody>
+    <light pos="0 0 1.5" dir="0 0 -1"/>
+    <geom name="floor" type="plane" size="1 1 0.1" rgba="0.8 0.8 0.8 1"/>
+    
+    <body name="base" pos="0 0 0.1">
+      <geom type="cylinder" size="0.05 0.05" rgba="0.2 0.2 0.6 1"/>
+      <joint name="joint1" type="hinge" axis="0 0 1" range="-1.57 1.57"/>
+      
+      <body name="upper_arm" pos="0 0 0.1">
+        <geom type="box" size="0.02 0.02 0.15" pos="0 0 0.15" rgba="0.6 0.2 0.2 1"/>
+        <joint name="joint2" type="hinge" axis="0 1 0" range="-1.57 1.57"/>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="actuator_joint1" joint="joint1" gear="100"/>
+    <motor name="actuator_joint2" joint="joint2" gear="100"/>
+  </actuator>
+</mujoco>
